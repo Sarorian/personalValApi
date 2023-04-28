@@ -77,7 +77,7 @@ app.get('/players/:playerName/:agent', (req, res) => {
   
 const connectDB = async () => {
     try {
-        mongoose.connect(`mongodb+srv://shamowen5:${process.env.ATLAS_PASS}@sarorian.wh5lzfz.mongodb.net/BYDO`, { useNewUrlParser: true, useUnifiedTopology: true });
+        mongoose.connect(process.env.CONNECTION_URI, { useNewUrlParser: true, useUnifiedTopology: true });
         console.log("Connected to database sucesfully");
     } catch (e) {
         console.log(e);
