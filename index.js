@@ -29,7 +29,11 @@ app.get('/teamdata', (req, res) => {
 app.get('/teamdata/:map', (req, res) => {
     teamData.find({ map: req.params.map})
     .then((data) => {
-        res.status(200).json(data);
+        if (data.length === 0) {
+            res.status(200).send(`No games played on ${req.params.map}`);
+        } else {
+            res.status(200).json(data);
+        }
     })
     .catch((err) => {
         console.log(err);
@@ -67,6 +71,9 @@ app.get('/players/:playerName/:agent', (req, res) => {
   
     playerModel.find({ agent: req.params.agent })
         .then((data) => {
+            if (data.length === 0) {
+                res.status(200).send(`${playerName} has no games played on ${req.params.agent}`);
+            }
             res.status(200).json(data);
         })
         .catch((err) => {
