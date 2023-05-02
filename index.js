@@ -30,7 +30,7 @@ app.get('/teamdata/:map', (req, res) => {
     teamData.find({ map: req.params.map})
     .then((data) => {
         if (data.length === 0) {
-            res.status(200).send(`No games played on ${req.params.map}`);
+            res.status(404).send(`No games played on ${req.params.map}`);
         } else {
             res.status(200).json(data);
         }
@@ -81,7 +81,6 @@ app.get('/players/:playerName/:agent', (req, res) => {
             res.status(500).send('Error: ' + err);
         });
   });
-  
 const connectDB = async () => {
     try {
         mongoose.connect(process.env.CONNECTION_URI, { useNewUrlParser: true, useUnifiedTopology: true });
