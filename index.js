@@ -30,7 +30,7 @@ app.get('/teamdata/:map', (req, res) => {
     teamData.find({ map: req.params.map})
     .then((data) => {
         if (data.length === 0) {
-            res.status(200).json({
+            res.status(999).json({
                 status: 404,
                 data: []
             });
@@ -75,7 +75,7 @@ app.get('/players/:playerName/:agent', (req, res) => {
     playerModel.find({ agent: req.params.agent })
         .then((data) => {
             if (data.length === 0) {
-                res.status(404).json({
+                res.status(999).json({
                     status: 404,
                     data: []
                 });
