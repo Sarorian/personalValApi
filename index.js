@@ -30,7 +30,7 @@ app.get('/teamdata/:map', (req, res) => {
     teamData.find({ map: req.params.map})
     .then((data) => {
         if (data.length === 0) {
-            res.status(404).json({
+            res.status(200).json({
                 status: 404,
                 data: []
             });
@@ -49,7 +49,7 @@ app.get('/players/:playerName', (req, res) => {
     const playerModel = Models[playerName + 'Data'];
   
     if (!playerModel) {
-        res.status(400).send('Invalid player name');
+        res.status(200).send('Invalid player name');
         return;
     }
   
